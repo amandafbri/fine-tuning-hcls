@@ -1,0 +1,752 @@
+{
+  "resourceType": "Bundle",
+  "id": "example-cardiac-event-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:patient-jss",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-jss",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://example.org/fhir/sid/patient-ids",
+            "value": "JSS45"
+          }
+        ],
+        "name": [
+          {
+            "use": "usual",
+            "text": "J.S.S.",
+            "given": [
+              "J.S.S."
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1978-01-01",
+        "age": "45 years"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:encounter-er",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "encounter-er",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Encounter"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://example.org/fhir/sid/encounter-ids",
+            "value": "ER0012345"
+          }
+        ],
+        "status": "in-progress",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "Emergency"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "period": {
+          "start": "2023-10-27T14:00:00-03:00"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                "code": "EMER",
+                "display": "Emergency"
+              }
+            ],
+            "text": "Atendimento de Emergência"
+          }
+        ],
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "29857009",
+                "display": "Chest pain"
+              }
+            ],
+            "text": "Dor precordial intensa e irradiando para MSE"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Encounter"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:condition-has",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-has",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Condition"
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "38341003",
+              "display": "Hypertensive disorder"
+            }
+          ],
+          "text": "HAS"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:condition-dm2",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-dm2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Condition"
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "44054006",
+              "display": "Diabetes mellitus type 2"
+            }
+          ],
+          "text": "DM tipo 2"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:condition-stemi",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "condition-stemi",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Condition"
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "414030009",
+              "display": "ST elevation myocardial infarction"
+            },
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I21.0",
+              "display": "Acute transmural myocardial infarction of anterior wall"
+            }
+          ],
+          "text": "IAM com Supradesnivelamento de ST em parede anterior"
+        },
+        "onsetDateTime": "2023-10-27T12:00:00-03:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-bp",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-bp",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel with all components"
+            }
+          ],
+          "text": "Pressão Arterial"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "effectiveDateTime": "2023-10-27T14:15:00-03:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ],
+              "text": "Pressão Arterial Sistólica"
+            },
+            "valueQuantity": {
+              "value": 160,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ],
+              "text": "Pressão Arterial Diastólica"
+            },
+            "valueQuantity": {
+              "value": 100,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org",
+              "code": "mmHg"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-hr",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-hr",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Frequência Cardíaca"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "effectiveDateTime": "2023-10-27T14:15:00-03:00",
+        "valueQuantity": {
+          "value": 110,
+          "unit": "bpm",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-sato2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-sato2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2708-6",
+              "display": "Oxygen saturation in arterial blood"
+            }
+          ],
+          "text": "Saturação de Oxigênio"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "effectiveDateTime": "2023-10-27T14:15:00-03:00",
+        "valueQuantity": {
+          "value": 95,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-ecg",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "observation-ecg",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "13271-9",
+              "display": "ECG Interpretation"
+            }
+          ],
+          "text": "ECG"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "effectiveDateTime": "2023-10-27T14:30:00-03:00",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "449080005",
+              "display": "ST segment elevation on electrocardiogram"
+            }
+          ],
+          "text": "Supradesnivelamento de ST em parede anterior"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medicationrequest-aas",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "medicationrequest-aas",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/MedicationRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "161",
+              "display": "Aspirin"
+            }
+          ],
+          "text": "AAS"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "authoredOn": "2023-10-27T14:45:00-03:00",
+        "dosageInstruction": [
+          {
+            "text": "Iniciou AAS",
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+                  "code": "PO",
+                  "display": "Oral"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medicationrequest-clopidogrel",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "medicationrequest-clopidogrel",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/MedicationRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "301549",
+              "display": "Clopidogrel"
+            }
+          ],
+          "text": "Clopidogrel"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "authoredOn": "2023-10-27T14:45:00-03:00",
+        "dosageInstruction": [
+          {
+            "text": "Iniciou clopidogrel",
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+                  "code": "PO",
+                  "display": "Oral"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medicationrequest-heparina",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "medicationrequest-heparina",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/MedicationRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "5201",
+              "display": "Heparin"
+            }
+          ],
+          "text": "Heparina"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "authoredOn": "2023-10-27T14:45:00-03:00",
+        "dosageInstruction": [
+          {
+            "text": "Iniciou heparina",
+            "route": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+                  "code": "IV",
+                  "display": "Intravenous"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:servicerequest-cate",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "servicerequest-cate",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/R4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/servicerequest-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "416620005",
+              "display": "Cardiac catheterization"
+            }
+          ],
+          "text": "Cateterismo Cardíaco"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-jss"
+        },
+        "encounter": {
+          "reference": "urn:uuid:encounter-er"
+        },
+        "occurrenceDateTime": "2023-10-27T15:00:00-03:00",
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "414030009",
+                "display": "ST elevation myocardial infarction"
+              }
+            ],
+            "text": "IAM com Supra de ST"
+          }
+        ],
+        "note": [
+          {
+            "text": "Aguardando transferência para CATE. Contato realizado com hemodinâmica."
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "ServiceRequest"
+      }
+    }
+  ]
+}
