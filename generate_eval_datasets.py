@@ -9,7 +9,7 @@ import json
 import os
 
 # Caminhos dos arquivos
-WORKSPACE_DIR = "/Users/amandafurtado/dev/fine-tuning-hcls"
+WORKSPACE_DIR = "YOUR WORKSPACE DIR" # TODO: update this path
 SRC_FILE = os.path.join(WORKSPACE_DIR, "validation_dataset.jsonl")
 
 # Destinos
