@@ -9,7 +9,7 @@ import json
 import os
 
 # Caminhos dos arquivos
-WORKSPACE_DIR = "YOUR WORKSPACE DIR" # TODO: update this path
+WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_FILE = os.path.join(WORKSPACE_DIR, "validation_dataset.jsonl")
 
 # Destinos
@@ -68,8 +68,8 @@ def extract_parts(row):
 
 def generate_flat_dataset(source_data, output_path):
     """
-    Formato A: Flat JSONL com colunas 'prompt' e 'reference'.
-    Combina system instruction e a pergunta/relatório no prompt, fornecendo o FHIR esperado no reference.
+    Formato A: Flat JSONL com colunas 'prompt' e 'response'.
+    Combina system instruction e a pergunta/relatório no prompt, fornecendo o FHIR esperado no response.
     """
     count = 0
     with open(output_path, 'w', encoding='utf-8') as f:
@@ -83,7 +83,7 @@ def generate_flat_dataset(source_data, output_path):
             
             output_obj = {
                 "prompt": prompt,
-                "reference": model_txt
+                "response": model_txt
             }
             f.write(json.dumps(output_obj, ensure_ascii=False) + "\n")
             count += 1
